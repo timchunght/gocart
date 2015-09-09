@@ -21,6 +21,12 @@ templates := populateTemplates()
 				
 		
 			var context interface{} = nil
+			// switch requestedFile {
+			// case "home":
+			// 	context = viewmodels.GetHome()
+			// case "categories":
+			// 	context = viewmodels.GetCategories()
+			// }
 			if requestedFile == "home" {
 				context = viewmodels.GetHome()
 			}
