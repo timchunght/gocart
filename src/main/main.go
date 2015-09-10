@@ -7,11 +7,10 @@ import (
   "bufio"
   "strings"
   "viewmodels"
-
 )
 
 func main() {
-templates := populateTemplates()
+	templates := populateTemplates()
 	
 	http.HandleFunc("/", 
 		func(w http.ResponseWriter, req *http.Request) {
@@ -19,13 +18,16 @@ templates := populateTemplates()
 			template :=
 				templates.Lookup(requestedFile + ".html")
 				
-		
 			var context interface{} = nil
 			switch requestedFile {
 			case "home":
 				context = viewmodels.GetHome()
 			case "categories":
 				context = viewmodels.GetCategories()
+			case "products":
+				context = viewmodels.GetProducts()	
+			case "product":
+				context = viewmodels.GetProduct()
 			}
 			if template != nil {
 				template.Execute(w, context)
@@ -39,7 +41,6 @@ templates := populateTemplates()
 	
 	http.ListenAndServe(":8000", nil)
 }
-
 
 func serveResource(w http.ResponseWriter, req *http.Request) {
 	path := "public" + req.URL.Path
