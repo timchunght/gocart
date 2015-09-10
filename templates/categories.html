@@ -1,35 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-{{template "_head.html", .Title}}
+{{template "_head.html" .Title}}
 <body>
-	{template "_header.html", .Active}}
+	{{template "_header.html" .Active}}
 	<div class="row categories">
 		<div class="columns small-10 small-offset-1">
 			{{range .Categories}}
-				<div class="row category 
-						{{if eq .IsOrientRight true}} 
-							orient-right
-						{{else}}
-							orient-right
-						{{end}}">
-					<a href="/products.html">
-						{{if eq .IsOrientRight false }}
-							<div class="columns small-4">
-								<img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
-							</div>
-						{{end}}
-						<div class="columns small-8">
-							<h2>{{.Title}}</h2>
-							<p>{{.Description}}</p>
-						</div>
-						{{if eq .IsOrientRight true }}
-							<div class="columns small-4">
-								<img src="/img/{{.ImageUrl}}" alt="{{.ImageUrl}}" />
-							</div>
-						{{end}}
-					</a>
-				</div>
+				{{template "_category.html" .}}
 			{{end}}
 		</div>
 	</div>

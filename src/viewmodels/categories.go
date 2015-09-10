@@ -7,7 +7,7 @@ import (
 type Categories struct {
 	Title string
 	Active string
-	Categories []Category 
+	Categories []Category
 }
 
 type Category struct {
@@ -18,11 +18,11 @@ type Category struct {
 }
 
 func GetCategories() Categories {
-	result := Categories {
+	result := Categories{
 		Title: "Lemonade Stand Society - Shop",
 		Active: "shop",
 	}
-
+	
 	juiceCategory := Category{
  		ImageUrl: "lemon.png",
  		Title: "Juices and Mixes",
@@ -51,12 +51,12 @@ func GetCategories() Categories {
 						level, our premium line of advertising supplies.`,
 		IsOrientRight: false,
  	}
-
- 	result.Categories = []Category{
- 		juiceCategory,
- 		supplyCategory,
- 		advertiseCategory,
- 	}
-
- 	return result
+	
+	result.Categories = []Category{
+		juiceCategory,
+		supplyCategory,
+		advertiseCategory,
+	}
+	
+	return result
 }
