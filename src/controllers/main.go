@@ -6,10 +6,10 @@ import (
   "text/template"
   "bufio"
   "strings"
-  "viewmodels"
 )
 
 func Register(templates *template.Template) {
+	/*
 	http.HandleFunc("/", 
 		func(w http.ResponseWriter, req *http.Request) {
 			requestedFile := req.URL.Path[1:]
@@ -33,6 +33,15 @@ func Register(templates *template.Template) {
 				w.WriteHeader(404)
 			}
 		})
+	*/
+	hc := new(homeController)
+	hc.template = templates.Lookup("home.html")
+	cc := new(categoriesController)
+	cc.template = templates.Lookup("categories.html")
+	http.HandleFunc("/home", hc.get)
+
+	http.HandleFunc("/categories", cc.get)
+
 	
 	http.HandleFunc("/img/", serveResource)
 	http.HandleFunc("/css/", serveResource)
