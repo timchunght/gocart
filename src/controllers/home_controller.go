@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"viewmodels"
 	"text/template"
+	"controllers/util"
 )
 
 type homeController struct {
@@ -13,5 +14,7 @@ type homeController struct {
 func (this *homeController) get(w http.ResponseWriter, req *http.Request) {
 	vm := viewmodels.GetHome()
 	w.Header().Add("Content-Type", "text/html")
-	this.template.Execute(w, vm)
+	responseWriter := util.GetResponseWriter(w, req)
+	defer responseWriter.Close()
+	this.template.Execute(responseWriter, vm)
 }
